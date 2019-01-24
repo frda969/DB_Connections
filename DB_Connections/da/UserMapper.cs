@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using DB_Connections.bl;
 
 namespace DB_Connections.da
@@ -14,8 +15,24 @@ namespace DB_Connections.da
 
         public List<User> getUsers()
         {
-            conn.Open();
+            SqlDataReader dataReader = conn.runSelectQuery("SELECT * FROM USERS ");
+            if (dataReader.HasRows)
+            {
+                List<User> users;
+                while (dataReader.Read)
+                {
+                    User user = new User();
+                    user.Id = Int32.Parse(dataReader["Id"].ToString());
+                    user.FirstName = dataReader["FirstName"].ToString();
+                    user.LastName = dataReader["LastName"].ToString();
+                    this.users.Add(user);
+                }
+                return users;
+            }
+            else { return null; }
+
+
         }
-        
+
     }
 }

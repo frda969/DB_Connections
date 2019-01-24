@@ -11,6 +11,7 @@ namespace DB_Connections.bl
         private int id;
         private string firstName;
         private string lastName;
+        public User() { }
 
         public User(int id, string fName, string lName)
         {
@@ -19,7 +20,7 @@ namespace DB_Connections.bl
             this.lastName = lName;
         }
 
-        public int Id => id;
+        public int Id { get => id; set => id = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
     }
