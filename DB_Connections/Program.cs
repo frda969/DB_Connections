@@ -11,6 +11,7 @@ namespace DB_Connections
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello world");
 
         }
     }
